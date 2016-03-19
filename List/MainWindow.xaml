@@ -7,8 +7,19 @@
         mc:Ignorable="d"
         Title="List" Height="350" Width="525">
     <DockPanel LastChildFill="True">
-        <Menu DockPanel.Dock="Top"></Menu>
-        <StatusBar DockPanel.Dock="Bottom"></StatusBar>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Command="Open" />
+                <MenuItem Header="E_xit" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Command="Help"/>
+                <MenuItem Header="_About List" />
+            </MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem x:Name="StatusPanel1" Content="Ready" />
+        </StatusBar>
         <Grid>
 
         </Grid>

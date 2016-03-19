@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:List"
         mc:Ignorable="d"
-        Title="About List" Height="300" Width="400">
+        Title="About List" Height="300" Width="400" Loaded="Window_Loaded">
     <Grid>
         <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,100,10,10" TextAlignment="Center" 
-                   Text="List - My replacement for Vern Buerg's 'List' DOS program." />
+                   Text="{Binding Path=AboutText}" />
     </Grid>
 </Window>

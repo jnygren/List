@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:List"
         mc:Ignorable="d"
-        Title="List" Height="350" Width="525">
+        Title="List" Height="350" Width="525" Loaded="Window_Loaded">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
@@ -14,13 +14,14 @@
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Command="Help"/>
-                <MenuItem Header="_About List" />
+                <MenuItem Header="_About List" Click="About_Click" />
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem x:Name="StatusPanel1" Content="Ready" />
         </StatusBar>
         <Grid>
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" TextWrapping="NoWrap" Text="{Binding Path=ListDisplay}" />
 
         </Grid>
     </DockPanel>

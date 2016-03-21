@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
 
 namespace List
 {
@@ -57,5 +59,32 @@ namespace List
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
 
+        private void Open_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            string listFilePath = "";
+            string oneLine = "";
+            OpenFileDialog ofn = new OpenFileDialog();
+
+            ofn.Title = "Select file to list";
+            if ((bool)ofn.ShowDialog(this))
+            {
+                listFilePath = ofn.FileName;
+                using (BinaryReader br = new BinaryReader(File.Open(listFilePath, FileMode.Open)))
+                {
+                    byte b = (byte)br.PeekChar();
+                    while (br.BaseStream.Position < br.BaseStream.Length)
+                    {
+                        b = br.ReadByte();
+                        oneLine = string.Format("{0:X2} {1}\r\n", b, Convert.ToChar(b));
+                        ListDisplay += oneLine;
+                    }
+                }
+            }
+        }
     }
 }

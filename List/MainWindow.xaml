@@ -9,7 +9,10 @@
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Command="Open" />
+                <MenuItem Header="_Open" Command="ApplicationCommands.Open" >
+                    <MenuItem.CommandBindings>
+                        <CommandBinding Command="ApplicationCommands.Open" CanExecute="Open_CanExecute" Executed="Open_Executed" />
+                    </MenuItem.CommandBindings></MenuItem> 
                 <MenuItem Header="E_xit" />
             </MenuItem>
             <MenuItem Header="_Help">

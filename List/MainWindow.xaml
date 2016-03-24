@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:List"
         mc:Ignorable="d"
-        Title="List" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="List" Height="450" Width="625" Loaded="Window_Loaded">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
                 <MenuItem Header="_Open" Command="ApplicationCommands.Open" >
                     <MenuItem.CommandBindings>
                         <CommandBinding Command="ApplicationCommands.Open" CanExecute="Open_CanExecute" Executed="Open_Executed" />
-                    </MenuItem.CommandBindings></MenuItem> 
+                    </MenuItem.CommandBindings>
+                </MenuItem>
                 <MenuItem Header="E_xit" />
             </MenuItem>
             <MenuItem Header="_Help">
@@ -24,8 +25,12 @@
             <StatusBarItem x:Name="StatusPanel1" Content="Ready" />
         </StatusBar>
         <Grid>
-            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" TextWrapping="NoWrap" Text="{Binding Path=ListDisplay}" />
-
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10" >
+                <ScrollViewer>
+                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="7" FontFamily="Lucida Console, Courier New"
+                               TextWrapping="NoWrap" Text="{Binding Path=ListDisplay}" />
+                </ScrollViewer>
+            </Border>
         </Grid>
     </DockPanel>
 </Window>

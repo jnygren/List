@@ -13,8 +13,10 @@ namespace List
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         private string _listDisplay;
+        private string _filePath;
 
         public string ListDisplay { get { return _listDisplay; } set { _listDisplay = value; OnPropertyChanged("ListDisplay"); } }
+        public string FilePath { get { return _filePath; } set { _filePath = value; OnPropertyChanged("FilePath"); } }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -34,7 +36,18 @@ namespace List
         /// </summary>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            FilePath = "";
             ListDisplay += "(Open a file to list)\r\n";
+        }
+
+
+        /// <summary>
+        /// 'Exit' menu item click event handler
+        /// </summary>
+        private void FileExit_Click(object sender, RoutedEventArgs e)
+        {
+            // The correct way to close a WPF application.
+            Application.Current.Shutdown();
         }
 
 
@@ -75,7 +88,7 @@ namespace List
             ofn.Title = "Select file to list";
             if ((bool)ofn.ShowDialog(this))
             {
-                listFilePath = ofn.FileName;
+                FilePath = listFilePath = ofn.FileName;
                 ListDisplay = "";
                 using (BinaryReader br = new BinaryReader(File.Open(listFilePath, FileMode.Open, FileAccess.Read)))
                 {
@@ -114,5 +127,6 @@ namespace List
         {
             return b > 31 && b < 127 ? Convert.ToChar(b) : '.';
         }
+
     }
 }

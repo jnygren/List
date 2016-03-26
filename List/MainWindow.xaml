@@ -9,12 +9,13 @@
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
+                <!-- This is how to implement a command in one of the command libraries. (e.g. ApplicationCommands) -->
                 <MenuItem Header="_Open" Command="ApplicationCommands.Open" >
                     <MenuItem.CommandBindings>
                         <CommandBinding Command="ApplicationCommands.Open" CanExecute="Open_CanExecute" Executed="Open_Executed" />
                     </MenuItem.CommandBindings>
                 </MenuItem>
-                <MenuItem Header="E_xit" />
+                <MenuItem Header="E_xit" Click="FileExit_Click" />
             </MenuItem>
             <MenuItem Header="_Help">
                 <MenuItem Command="Help"/>
@@ -25,7 +26,8 @@
             <StatusBarItem x:Name="StatusPanel1" Content="Ready" />
         </StatusBar>
         <Grid>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="10" >
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,10,0,0" Text="{Binding Path=FilePath}" />
+            <Border BorderBrush="Black" BorderThickness="1" Margin="10,35,10,10" >
                 <ScrollViewer>
                     <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="7" FontFamily="Lucida Console, Courier New"
                                TextWrapping="NoWrap" Text="{Binding Path=ListDisplay}" />
